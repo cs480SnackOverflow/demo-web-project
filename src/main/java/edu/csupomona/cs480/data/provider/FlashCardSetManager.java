@@ -1,6 +1,6 @@
 package edu.csupomona.cs480.data.provider;
 
-import edu.csupomona.cs480.data.FlashCardSet;
+import edu.csupomona.cs480.data.entity.SetMetadata;
 
 import java.util.List;
 
@@ -13,24 +13,24 @@ public interface FlashCardSetManager {
 	 * If the flashCardSet does not exist, return null
 	 *
 	 * @param id
-	 * @return the FlashCardSet object
+	 * @return the SetMetadata object
 	 */
-    FlashCardSet getFlashCardSet(String id);
+    SetMetadata getFlashCardSet(String id);
 
 	/**
-	 * Update the given FlashCardSet object and persist it.
+	 * Update the given SetMetadata object and persist it.
 	 * <p>
-	 * If the FlashCardSet does not exist before, this
+	 * If the SetMetadata does not exist before, this
 	 * method will create a new record; otherwise,
 	 * it will overwrite whatever is currently
 	 * being stored.
 	 *
 	 * @param set object
 	 */
-    void updateFlashCardSet(FlashCardSet set);
+    void updateFlashCardSet(SetMetadata set);
 
 	/**
-	 * Delete the given FlashCardSet from the storage.
+	 * Delete the given SetMetadata from the storage.
 	 *
 	 * @param id
 	 */
@@ -48,12 +48,12 @@ public interface FlashCardSetManager {
 	 *
 	 * @return the object
 	 */
-    FlashCardSet parseJSON(String text);
+    SetMetadata parseJSON(String text);
 
 	/**
 	 * Turns an object into a JSON string
 	 *
 	 * @return the txt of the object
 	 */
-    String serializeJSON(FlashCardSet set);
+    String serializeJSON(SetMetadata set);
 }

@@ -2,7 +2,7 @@ package edu.csupomona.cs480.data.provider;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.csupomona.cs480.data.FlashCardSet;
+import edu.csupomona.cs480.data.entity.SetMetadata;
 import edu.csupomona.cs480.data.FlashCardSetMap;
 import edu.csupomona.cs480.util.ResourceResolver;
 
@@ -57,13 +57,13 @@ public class FSFlashCardSetManager implements FlashCardSetManager{
 	}
 
 	@Override
-	public FlashCardSet getFlashCardSet(String id) {
+	public SetMetadata getFlashCardSet(String id) {
 		FlashCardSetMap fcsMap = getFlashCardSetMap();
 		return fcsMap.get(id);
 	}
 
 	@Override
-	public void updateFlashCardSet(FlashCardSet set) {
+	public void updateFlashCardSet(SetMetadata set) {
 		FlashCardSetMap fcsMap = getFlashCardSetMap();
 		fcsMap.put(set.getId(), set);
 		presistFlashCardSetMap(fcsMap);
@@ -80,7 +80,7 @@ public class FSFlashCardSetManager implements FlashCardSetManager{
 	public List<String[]> listAllFlashCardSetIdNamePairs() {
 		FlashCardSetMap fcsMap = getFlashCardSetMap();
 		ArrayList<String[]> pairArrayList = new ArrayList<>();
-		for ( FlashCardSet f : fcsMap.values()){
+		for ( SetMetadata f : fcsMap.values()){
 			String[] pair = {f.getId(), f.getName()};
 			pairArrayList.add(pair);
 		}
@@ -88,21 +88,21 @@ public class FSFlashCardSetManager implements FlashCardSetManager{
 	}
 
 	@Override
-	public FlashCardSet parseJSON(String text) {
-		FlashCardSet flashCardSet = null;
+	public SetMetadata parseJSON(String text) {
+		SetMetadata setMetadata = null;
 
 		try {
-			flashCardSet = JSON.readValue(text, FlashCardSet.class);
+			setMetadata = JSON.readValue(text, SetMetadata.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return flashCardSet;
+		return setMetadata;
 
 	}
 
 	@Override
-	public String serializeJSON(FlashCardSet set) {
+	public String serializeJSON(SetMetadata set) {
 		try {
 			return JSON.writeValueAsString(set);
 		} catch (JsonProcessingException e) {
