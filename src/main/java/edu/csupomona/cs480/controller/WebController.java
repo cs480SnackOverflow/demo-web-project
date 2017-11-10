@@ -9,8 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.csupomona.cs480.data.FlashCardSet;
-import edu.csupomona.cs480.data.provider.FlashCardSetManager;
 import org.apache.commons.math.complex.Complex;
 import org.apache.commons.math.random.JDKRandomGenerator;
 import org.apache.commons.math.random.UniformRandomGenerator;
@@ -51,9 +49,6 @@ public class WebController {
 	 */
 	@Autowired
 	private UserManager userManager;
-
-	@Autowired
-	private FlashCardSetManager flashCardSetManager;
 
 	/**
 	 * This is a simple example of how the HTTP API works.
@@ -236,57 +231,4 @@ public class WebController {
 		Complex complexSum = complex1.add(complex2);
 		return "[ " + complex1.getReal() + ", " +  + complex1.getImaginary() + " ] + [ " + complex2.getReal() + ", " +  + complex2.getImaginary() + " ] = [ " + complexSum.getReal() + ", " +  + complexSum.getImaginary() + " ]" ;
 	}
-
-
-	//Actual project code starts here
-
-
-	/**
-	 * @param id the id of the wanted set
-	 * @return the full body of the wanted set
-	 */
-	@RequestMapping(value = "/set/{id}", method = RequestMethod.GET)
-	FlashCardSet getSet(@PathVariable("id") String id) {
-		FlashCardSet f = flashCardSetManager.getFlashCardSet(id);
-
-		//Here the object is successfully parsed automatically
-		return f;
-	}
-
-
-	/**
-	 * @return whether the set was successfully changed or not
-	 */
-	@RequestMapping(value = "/set", method = RequestMethod.POST)
-	boolean updateSet(@RequestBody String flashCardSetJSON) {
-
-		//TODO: Get automatic parsing of the JSON to work
-		//Manual parsing of the inbound JSON
-		FlashCardSet flashCardSet = flashCardSetManager.parseJSON(flashCardSetJSON);
-
-		if (flashCardSet != null) {
-			flashCardSetManager.updateFlashCardSet(flashCardSet);
-			return true;
-		}
-		return false;
-	}
-
-
-	/**
-	 * @return a list of all of the id, name pairs
-	 */
-	@RequestMapping(value = "/sets", method = RequestMethod.GET)
-	List<String[]> getAllSetIdNamePairs() {
-		return flashCardSetManager.listAllFlashCardSetIdNamePairs();
-	}
-
-
-	/**
-	 * @param id the id of the set you want to delete
-	 */
-	@RequestMapping(value = "/set/{id}", method = RequestMethod.DELETE)
-	void deleteSet(@PathVariable("id") String id) {
-		flashCardSetManager.deleteFlashCardSet(id);
-	}
-
 }
