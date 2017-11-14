@@ -3,45 +3,47 @@ package edu.csupomona.cs480.service;
 import edu.csupomona.cs480.data.entity.SetMetadata;
 import edu.csupomona.cs480.data.repository.SetMetadataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SetMetadataServiceImpl implements SetMetadataService {
 
-	private SetMetadataRepository flashcardSetRepository;
+	private SetMetadataRepository setMetadataRepository;
 
 	@Autowired
-	public void setFlashcardRepository(SetMetadataRepository flashcardSetRepository) {
-		this.flashcardSetRepository = flashcardSetRepository;
+	public void setMetadataRepository(SetMetadataRepository setMetadataRepository) {
+		this.setMetadataRepository = setMetadataRepository;
 	}
 
 	@Override
 	public Iterable<SetMetadata> listAllSetMetadatas() {
-		return flashcardSetRepository.findAll();
+		return setMetadataRepository.findAll();
 	}
 
 	@Override
 	public SetMetadata getSetMetadataById(Integer setId) {
-		return flashcardSetRepository.findOne(setId);
+		return setMetadataRepository.findOne(setId);
 	}
 
 	@Override
 	public SetMetadata saveSetMetadata(SetMetadata setMetadata) {
-		return flashcardSetRepository.save(setMetadata);
+		return setMetadataRepository.save(setMetadata);
 	}
 
 	@Override
 	public void deleteSetMetadata(Integer setId) {
-		flashcardSetRepository.delete(setId);
+		setMetadataRepository.delete(setId);
 	}
 
 	@Override
 	public List<SetMetadata> listAllSetMetadatasByName(String name) {
-		return flashcardSetRepository.findByName(name);
+		return setMetadataRepository.findByName(name);
 	}
 
 	@Override
 	public List<SetMetadata> listAllSetMetadatasByUserId(String userId) {
-		return flashcardSetRepository.findByUserId(userId);
+		return setMetadataRepository.findByUserId(userId);
 	}
 }

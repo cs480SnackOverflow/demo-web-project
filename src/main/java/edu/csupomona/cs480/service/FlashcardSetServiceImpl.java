@@ -4,11 +4,14 @@ import edu.csupomona.cs480.data.entity.Flashcard;
 import edu.csupomona.cs480.data.entity.FlashcardSet;
 import edu.csupomona.cs480.data.entity.SetMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
+@Service
+@DependsOn ({"setMetadataService", "flashcardSetService"})
 public class FlashcardSetServiceImpl implements FlashcardSetService {
 
 
@@ -16,12 +19,12 @@ public class FlashcardSetServiceImpl implements FlashcardSetService {
 	private FlashcardService flashcardService;
 
 	@Autowired
-	public void setSetMetadataService(SetMetadataService setMetadataService) {
+	public void setMetadataService(SetMetadataService setMetadataService) {
 		this.setMetadataService = setMetadataService;
 	}
 
 	@Autowired
-	public void setFlashcardSetService(FlashcardService flashcardService) {
+	public void flashcardSetService(FlashcardService flashcardService) {
 		this.flashcardService = flashcardService;
 	}
 
