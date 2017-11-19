@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Test</title>
+</head>
+<body>
+<p>
+    <label>Input Audio</label>
+    <input type="text"
+           id="testText"
+           value="Test Audio"/>
+    <button type="button" onclick="playAudio()">Play Text</button>
+
+    <audio id="sound">
+        <source src="http://www.commuterstudy.com/audio?msg=Test+Audio" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+</p>
+
+<script>
+function playAudio() {
+    document.getElementById("sound").src="http://www.commuterstudy.com/audio?msg=" + document.getElementById("testText").value
+    document.getElementById("sound").play()
+}
+
+</script>
+
+</body>
+</html>

@@ -290,4 +290,11 @@ public class WebController {
 		flashCardSetManager.deleteFlashCardSet(id);
 	}
 
+	/**
+	 * @return a simple html page through which one can test polly
+	 */
+	@RequestMapping(value="/testaudio")
+	ModelAndView audioTest() {
+		return new ModelAndView("audiotest");
+	}
 }
