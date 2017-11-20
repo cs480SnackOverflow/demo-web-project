@@ -11,7 +11,6 @@ public class Flashcard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     //for optimistic concurrency control
-    @Version
     private Integer version;
 	/** The term of the card, user data */
 	private String term;
