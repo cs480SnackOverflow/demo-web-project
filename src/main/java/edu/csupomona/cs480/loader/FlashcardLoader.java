@@ -1,7 +1,9 @@
 package edu.csupomona.cs480.loader;
 
 import edu.csupomona.cs480.data.entity.Flashcard;
+import edu.csupomona.cs480.data.entity.Set;
 import edu.csupomona.cs480.data.repository.FlashcardRepository;
+import edu.csupomona.cs480.data.repository.SetRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class FlashcardLoader implements ApplicationListener<ContextRefreshedEvent>{
 
     private FlashcardRepository flashcardRepository;
+    private SetRepository setRepository;
     private Logger log = Logger.getLogger(FlashcardLoader.class);
 
     @Autowired
@@ -24,13 +27,23 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
         this.flashcardRepository = flashcardRepository;
     }
 
+    @Autowired
+    public void setSetRepository(SetRepository setRepository) {
+        this.setRepository = setRepository;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+        Set bioSet = new Set();
+        bioSet.setTitle("Bio");
+        String bioId = UUID.randomUUID().toString();
+        bioSet.setSetId(bioId);
+        setRepository.save(bioSet);
 
         Flashcard bio = new Flashcard();
         bio.setTerm("Fish");
         bio.setDefinition("Animal that lives in water.");
-        String bioId = UUID.randomUUID().toString();
         log.info("uuid -- " + bioId);
         bio.setSetId(bioId);
         bio.setUserId("1");
@@ -39,6 +52,10 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
         log.info("Saved Bio Card - id" + bio.getId() + " "  + bio.getTerm());
 
         String set1Id = UUID.randomUUID().toString();
+        Set set1 = new Set();
+        set1.setTitle("History");
+        set1.setSetId(set1Id);
+        setRepository.save(set1);
         log.info("uuid -- " + set1Id);
 
         Flashcard history1 = new Flashcard();
@@ -70,6 +87,10 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
 
 
         set1Id = UUID.randomUUID().toString();
+        set1 = new Set();
+        set1.setTitle("Music");
+        set1.setSetId(set1Id);
+        setRepository.save(set1);
         log.info("uuid -- " + set1Id);
 
         Flashcard music1 = new Flashcard();
@@ -98,8 +119,6 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
         music3.setTitle("Music");
         flashcardRepository.save(music3);
         log.info("Saved music3 Card - id" + music3.getId() + " "  + music3.getTerm());
-
-
 
     }
 }
