@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface SetService {
 	List<Set> listAllSets();
-	Set getSetById(Integer id);
+	Set getSetById(int id);
 	Set saveSet(Set Set);
-	void deleteSet(Integer id);
+	void deleteSet(int id);
 	List<Set> listAllSetsBySetId(String setId);
 	List<Set> listAllSetsByTitle(String title);
 }

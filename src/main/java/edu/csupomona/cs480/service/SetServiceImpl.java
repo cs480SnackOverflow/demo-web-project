@@ -24,7 +24,7 @@ public class SetServiceImpl implements SetService {
     }
 
     @Override
-    public Set getSetById(Integer id) {
+    public Set getSetById(int id) {
         return setRepository.findOne(id);
     }
 
@@ -34,7 +34,7 @@ public class SetServiceImpl implements SetService {
     }
 
     @Override
-    public void deleteSet(Integer id) {
+    public void deleteSet(int id) {
         setRepository.delete(id);
     }
 

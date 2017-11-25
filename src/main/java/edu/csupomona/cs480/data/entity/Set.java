@@ -12,6 +12,8 @@ public class Set {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	private String setId;
 
 
@@ -31,4 +33,11 @@ public class Set {
 		this.setId = setId;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
