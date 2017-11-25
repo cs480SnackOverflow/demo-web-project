@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {RepositoryConfiguration.class})
@@ -58,6 +59,19 @@ public class UserRepositoryTest {
 
         assertEquals(user.getId(), user2.getId());
 
+    }
+
+    @Test
+    public void testDeleteUser() {
+        User user = new User();
+        user.setName("Billy Bronco");
+        user.setEmail("bbronco@cpp.edu");
+        long count = userRepository.count();
+        userRepository.save(user);
+        userRepository.delete(user.getId());
+        User actualUser = userRepository.findOne(user.getId());
+        assertNull(actualUser);
+        assertEquals(userRepository.count(), count);
     }
 
 

@@ -39,7 +39,7 @@ public class FlashcardServiceImpl implements FlashcardService {
     }
 
     @Override
-    public List<Flashcard> listAllFlashcardsByUserIdAndSetId(Integer userId, String setId) {
+    public List<Flashcard> listAllFlashcardsByUserIdAndSetId(String userId, String setId) {
         return flashcardRepository.findByUserIdAndSetId(userId, setId);
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface FlashcardRepository extends CrudRepository<Flashcard, Integer>{
 
-    List<Flashcard> findByUserIdAndSetId(@Param("userId") Integer userId, @Param("setId") String setId);
+    List<Flashcard> findByUserIdAndSetId(@Param("userId") String userId, @Param("setId") String setId);
     List<Flashcard> findBySetId(@Param("setId") String setId);
     List<Flashcard> findByUserId(@Param("userId") String userId);
 

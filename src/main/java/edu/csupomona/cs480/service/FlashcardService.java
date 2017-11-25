@@ -9,7 +9,7 @@ public interface FlashcardService {
     Flashcard getFlashcardById(Integer id);
     Flashcard saveFlashcard(Flashcard flashcard);
     void deleteFlashcard(Integer id);
-    List<Flashcard> listAllFlashcardsByUserIdAndSetId(Integer userId, String setId);
+    List<Flashcard> listAllFlashcardsByUserIdAndSetId(String userId, String setId);
     List<Flashcard> listAllFlashcardsBySetId(String setId);
     List<Flashcard> listAllFlashcardsByUserId(String userId);
 }
