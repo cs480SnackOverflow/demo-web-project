@@ -12,4 +12,5 @@ public interface FlashcardService {
     List<Flashcard> listAllFlashcardsByUserIdAndSetId(String userId, String setId);
     List<Flashcard> listAllFlashcardsBySetId(String setId);
     List<Flashcard> listAllFlashcardsByUserId(String userId);
+    long count();
 }

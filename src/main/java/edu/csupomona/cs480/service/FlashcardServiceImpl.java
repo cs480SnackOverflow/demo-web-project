@@ -52,4 +52,11 @@ public class FlashcardServiceImpl implements FlashcardService {
     public List<Flashcard> listAllFlashcardsByUserId(String userId) {
         return flashcardRepository.findByUserId(userId);
     }
+
+    @Override
+    public long count() {
+        return flashcardRepository.count();
+    }
+
+
 }

@@ -47,7 +47,7 @@ public class FlashcardRepositoryTest {
     	assertEquals(expectedFlashcard.getTerm(), actualFlashcard.getTerm());
     	assertEquals(expectedFlashcard.getDefinition(), actualFlashcard.getDefinition());
     }
-    
+
     @Test
     public void testDeleteFlashcard() {
     	Flashcard expectedFlashcard = new Flashcard();

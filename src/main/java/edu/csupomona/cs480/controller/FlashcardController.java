@@ -66,6 +66,14 @@ public class FlashcardController {
         return list;
     }
 
+    @RequestMapping(value = "flashcards/total", method = RequestMethod.GET)
+    public long getTotal() {
+        if(flashcardService.count() == 0) {
+            return 0L;
+        }
+        return flashcardService.count();
+    }
+
     //Update
     @RequestMapping("flashcard/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
