@@ -2,7 +2,9 @@ package edu.csupomona.cs480.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
 import edu.csupomona.cs480.data.entity.Flashcard;
+import edu.csupomona.cs480.data.entity.Set;
 import edu.csupomona.cs480.service.FlashcardService;
+import edu.csupomona.cs480.service.SetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,18 @@ import java.util.List;
 public class FlashcardController {
 
     private FlashcardService flashcardService;
+    private SetService setService;
 
     @Autowired
     public void setFlashcardService(FlashcardService flashcardService) {
         this.flashcardService = flashcardService;
     }
+
+    @Autowired
+    public void setSetService(SetService setService) {
+        this.setService = setService;
+    }
+
 
     //Create
     @RequestMapping("flashcard/new")
@@ -94,5 +103,34 @@ public class FlashcardController {
             System.out.println(f.getSetId());
             flashcardService.saveFlashcard(f);
         }
+    }
+
+    //recieve a set and add to database
+    @RequestMapping(value = "flashcard/set/newSet", method = RequestMethod.POST, consumes = "application/json")
+    @ResponseBody
+    public void saveSet(@RequestBody Set set) {
+
+        setService.saveSet(set);
+    }
+
+    //recieve a set and add to database
+    @RequestMapping(value = "flashcard/set/deleteset/{setId}", method = RequestMethod.GET)
+    public void deleteSet(@PathVariable int setId) {
+
+        setService.deleteSet(setId);
+    }
+
+    //recieve a set and add to database
+    @RequestMapping(value = "flashcard/set/getset/{setId}", method = RequestMethod.GET)
+    public Set getSet(@PathVariable int setId) {
+
+        return setService.getSetById(setId);
+    }
+
+    //recieve all of the sets in the database
+    @RequestMapping(value = "flashcard/set/allsets", method = RequestMethod.GET)
+    public List<Set> saveSet() {
+
+       return setService.listAllSets();
     }
 }
