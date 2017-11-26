@@ -43,7 +43,7 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
 
         Flashcard bio = new Flashcard();
         bio.setTerm("Fish");
-        bio.setDefinition("Animal that lives in water.");
+        bio.setDefinition("Animal that lives in water");
         log.info("uuid -- " + bioId);
         bio.setSetId(bioId);
         bio.setUserId("1");
@@ -60,7 +60,7 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
 
         Flashcard history1 = new Flashcard();
         history1.setTerm("First President");
-        history1.setDefinition("George Washington.");
+        history1.setDefinition("George Washington");
         history1.setSetId(set1Id);
         history1.setUserId("2");
         history1.setTitle("History");
@@ -69,7 +69,7 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
 
         Flashcard history2 = new Flashcard();
         history2.setTerm("Second President");
-        history2.setDefinition("John Adams.");
+        history2.setDefinition("John Adams");
         history2.setSetId(set1Id);
         history2.setUserId("2");
         history2.setTitle("History");
@@ -78,7 +78,7 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
 
         Flashcard history3 = new Flashcard();
         history3.setTerm("Third President");
-        history3.setDefinition("Thomas Jefferson.");
+        history3.setDefinition("Thomas Jefferson");
         history3.setSetId(set1Id);
         history3.setUserId("2");
         history3.setTitle("History");
