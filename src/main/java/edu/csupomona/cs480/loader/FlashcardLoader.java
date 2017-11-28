@@ -35,6 +35,7 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
+<<<<<<< a4374e24facc55b03bb490d96327bc2245e80e16
         Set bioSet = new Set();
         bioSet.setTitle("Bio");
         String bioId = UUID.randomUUID().toString();
@@ -120,5 +121,8 @@ public class FlashcardLoader implements ApplicationListener<ContextRefreshedEven
         flashcardRepository.save(music3);
         log.info("Saved music3 Card - id" + music3.getId() + " "  + music3.getTerm());
 
+=======
+      //hard code flashcards here for testing
+>>>>>>> Updated frontend- new create page, fixes to voice rec, removed hardcoded flashcards for demo
     }
 }
